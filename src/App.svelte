@@ -1,9 +1,33 @@
 <script>
 	import 'bulma/css/bulma.min.css'; // From Carlos Roso: https://carlosroso.com/how-to-import-css-files-to-svelte/
+    import { onMount } from 'svelte';
+
+	let correctCount = 0;
+	let incorrectCount = 0;
+	let currentQuestions = [];
+
+	async function fetchData(url) {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
+	onMount(async () => {
+		const currentQuestionsData = await fetchData('https://opentdb.com/api.php?amount=10');
+		currentQuestions = currentQuestionsData.results;
+	});
 </script>
 
 <main>
 	<h1 class="title">Svelte Trivia App</h1>
+
+	<p>Questions answered correctly: {correctCount}</p>
+	<p>Questions answered incorrectly: {incorrectCount}</p>
 
 	<label for="category-select">Choose a category:</label>
 	<div class="select">
@@ -53,6 +77,14 @@
 			</label>
 		</div>
 	</fieldset>
+
+	<button class="button">Get 10 New Questions</button>
+
+	<ul>
+		{#each currentQuestions as question, index}
+		<li>{question.question}</li>
+		{/each}
+	</ul>
 
 	<p>Created using the <a href="https://opentdb.com/api_config.php">Open Trivia Database API</a>.</p>
 </main>
