@@ -35,7 +35,25 @@
 			<option value="32">Entertainment: Cartoon &amp; Animations</option>
 		</select>
 	</div>
-	
+
+	<fieldset>
+		<legend>Choose a difficulty level:</legend>
+		<div class="control">
+			<label class="radio">
+				<input type="radio" name="difficulty" value="easy">
+				Easy
+			</label>
+			<label class="radio">
+				<input type="radio" name="difficulty" value="medium">
+				Medium
+			</label>
+			<label class="radio">
+				<input type="radio" name="difficulty" value="hard">
+				Hard
+			</label>
+		</div>
+	</fieldset>
+
 	<p>Created using the <a href="https://opentdb.com/api_config.php">Open Trivia Database API</a>.</p>
 </main>
 
