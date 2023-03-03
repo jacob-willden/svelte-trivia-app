@@ -17,9 +17,18 @@
         }
     }
 
+	// Decode string with HTML entities while avoiding cross-site scripting, from Wladimir Palant on StackOverflow: https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+	function htmlDecode(input) {
+		const doc = new DOMParser().parseFromString(input, 'text/html');
+		return doc.documentElement.textContent;
+	}
+
 	onMount(async () => {
 		const currentQuestionsData = await fetchData('https://opentdb.com/api.php?amount=10');
-		currentQuestions = currentQuestionsData.results;
+		for(let questionObject of currentQuestionsData.results) {
+			const questionText = questionObject.question;
+			currentQuestions = [...currentQuestions, htmlDecode(questionText)];
+		}
 	});
 </script>
 
@@ -82,7 +91,7 @@
 
 	<ul>
 		{#each currentQuestions as question, index}
-		<li>{question.question}</li>
+		<li>{question}</li>
 		{/each}
 	</ul>
 
