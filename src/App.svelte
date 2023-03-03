@@ -14,15 +14,42 @@
 		return doc.documentElement.textContent;
 	}
 
+	// Shuffle items in an array, from StackOverflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+	function shuffle(array) {
+		let currentIndex = array.length, randomIndex;
+
+		// While there remain elements to shuffle
+		while (currentIndex != 0) {
+			// Pick a remaining element
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
+
+			// And swap it with the current element
+			[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+		}
+		return array;
+	}
+
 	async function fetchTrivia() {
         try {
             const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`);
             const data = await response.json();
-			
+		
 			currentQuestions = [];
 			for(let questionObject of data.results) {
-				const questionText = questionObject.question;
-				currentQuestions = [...currentQuestions, htmlDecode(questionText)];
+				const questionText = htmlDecode(questionObject.question);
+				const questionType = questionObject.type;
+				const answersArray = shuffle([questionObject.correct_answer, ...questionObject.incorrect_answers]);
+
+				currentQuestions = [
+					...currentQuestions, 
+					{
+						text: questionText,
+						type: questionType,
+						answers: answersArray,
+						correctAnswer: questionObject.correct_answer
+					}
+				];
 			}
         }
         catch(error) {
@@ -98,11 +125,18 @@
 
 	<button class="button" on:click={fetchTrivia}>Get 10 New Questions</button>
 
-	<ul>
-		{#each currentQuestions as question, index}
-		<li>{question}</li>
+		{#each currentQuestions as question}
+			<div class="card">
+				<div class="card-content">
+					<div class="content">
+						<p>{question.text}</p>
+						{#each question.answers as answer}
+							<button class="button" value={answer}>{answer}</button>
+						{/each}
+					</div>
+				</div>
+			</div>
 		{/each}
-	</ul>
 
 	<p>Created using the <a href="https://opentdb.com/api_config.php">Open Trivia Database API</a>.</p>
 </main>
@@ -110,5 +144,8 @@
 <style>
 	main {
 		padding: 1rem;
+	}
+	.card {
+		margin: 1rem 0;
 	}
 </style>
