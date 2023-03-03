@@ -19,6 +19,7 @@
             const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`);
             const data = await response.json();
 			
+			currentQuestions = [];
 			for(let questionObject of data.results) {
 				const questionText = questionObject.question;
 				currentQuestions = [...currentQuestions, htmlDecode(questionText)];
@@ -95,7 +96,7 @@
 		</div>
 	</fieldset>
 
-	<button class="button">Get 10 New Questions</button>
+	<button class="button" on:click={fetchTrivia}>Get 10 New Questions</button>
 
 	<ul>
 		{#each currentQuestions as question, index}
