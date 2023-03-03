@@ -5,17 +5,8 @@
 	let correctCount = 0;
 	let incorrectCount = 0;
 	let currentQuestions = [];
-
-	async function fetchData(url) {
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            return data;
-        }
-        catch(error) {
-            console.error(error);
-        }
-    }
+	let category = '';
+	let difficulty = '';
 
 	// Decode string with HTML entities while avoiding cross-site scripting, from Wladimir Palant on StackOverflow: https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
 	function htmlDecode(input) {
@@ -23,13 +14,26 @@
 		return doc.documentElement.textContent;
 	}
 
+	async function fetchTrivia() {
+        try {
+            const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`);
+            const data = await response.json();
+			
+			for(let questionObject of data.results) {
+				const questionText = questionObject.question;
+				currentQuestions = [...currentQuestions, htmlDecode(questionText)];
+			}
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
 	onMount(async () => {
-		const currentQuestionsData = await fetchData('https://opentdb.com/api.php?amount=10');
-		for(let questionObject of currentQuestionsData.results) {
-			const questionText = questionObject.question;
-			currentQuestions = [...currentQuestions, htmlDecode(questionText)];
-		}
+		fetchTrivia();
 	});
+
+	$: console.log('category:', category, 'difficulty:', difficulty);
 </script>
 
 <main>
@@ -40,8 +44,8 @@
 
 	<label for="category-select">Choose a category:</label>
 	<div class="select">
-		<select name="category-select" class="select">
-			<option value="any">Any Category</option>
+		<select name="category-select" class="select" bind:value={category}>
+			<option value="">Any Category</option>
 			<option value="9">General Knowledge</option>
 			<option value="10">Entertainment: Books</option>
 			<option value="11">Entertainment: Film</option>
@@ -73,15 +77,19 @@
 		<legend>Choose a difficulty level:</legend>
 		<div class="control">
 			<label class="radio">
-				<input type="radio" name="difficulty" value="easy">
+				<input type="radio" name="difficulty" value="" bind:group={difficulty}>
+				Any
+			</label>
+			<label class="radio">
+				<input type="radio" name="difficulty" value="easy" bind:group={difficulty}>
 				Easy
 			</label>
 			<label class="radio">
-				<input type="radio" name="difficulty" value="medium">
+				<input type="radio" name="difficulty" value="medium" bind:group={difficulty}>
 				Medium
 			</label>
 			<label class="radio">
-				<input type="radio" name="difficulty" value="hard">
+				<input type="radio" name="difficulty" value="hard" bind:group={difficulty}>
 				Hard
 			</label>
 		</div>
