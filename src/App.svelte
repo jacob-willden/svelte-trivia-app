@@ -39,6 +39,7 @@
 			for(let questionObject of data.results) {
 				const questionText = htmlDecode(questionObject.question);
 				const questionType = questionObject.type;
+				const questionCategory = questionObject.category;
 				const answersArray = shuffle([questionObject.correct_answer, ...questionObject.incorrect_answers]);
 
 				currentQuestions = [
@@ -46,6 +47,7 @@
 					{
 						text: questionText,
 						type: questionType,
+						category: questionCategory,
 						answers: answersArray,
 						correctAnswer: questionObject.correct_answer
 					}
@@ -130,9 +132,12 @@
 				<div class="card-content">
 					<div class="content">
 						<p>{question.text}</p>
-						{#each question.answers as answer}
-							<button class="button" value={answer}>{answer}</button>
-						{/each}
+						<div>
+							{#each question.answers as answer}
+								<button class="button trivia-answer" value={answer}>{answer}</button>
+							{/each}
+						</div>
+						<span class="tag is-light">Category: {question.category}</span>
 					</div>
 				</div>
 			</div>
@@ -147,5 +152,14 @@
 	}
 	.card {
 		margin: 1rem 0;
+	}
+	.trivia-answer {
+		margin: 0 1rem;
+	}
+	.trivia-answer:first-child, .trivia-answer:last-child {
+		margin: 0;
+	}
+	.tag {
+		margin-top: 1rem;
 	}
 </style>
