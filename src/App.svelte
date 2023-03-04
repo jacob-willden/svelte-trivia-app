@@ -88,7 +88,7 @@
 		fetchTrivia();
 	});
 
-	$: console.log('category:', category, 'difficulty:', difficulty);
+	//$: console.log('category:', category, 'difficulty:', difficulty);
 </script>
 
 <main>
@@ -97,7 +97,7 @@
 	<p>Questions answered correctly: {correctCount}</p>
 	<p>Questions answered incorrectly: {incorrectCount}</p>
 
-	<label for="category-select">Choose a category:</label>
+	<label for="category-select" class="mt-4">Choose a category:</label>
 	<div class="select">
 		<select name="category-select" class="select" bind:value={category}>
 			<option value="">Any Category</option>
@@ -128,7 +128,7 @@
 		</select>
 	</div>
 
-	<fieldset>
+	<fieldset class="mt-4">
 		<legend>Choose a difficulty level:</legend>
 		<div class="control">
 			<label class="radio">
@@ -150,7 +150,7 @@
 		</div>
 	</fieldset>
 
-	<button class="button" on:click={fetchTrivia}>Get 10 New Questions</button>
+	<button class="button mt-4" on:click={fetchTrivia}>Get 10 New Questions</button>
 
 		{#each currentQuestions as question}
 			<div class="card">
@@ -174,6 +174,9 @@
 <style>
 	main {
 		padding: 1rem;
+	}
+	.mt-4 {
+		margin-top: 1rem;
 	}
 	.card {
 		margin: 1rem 0;
