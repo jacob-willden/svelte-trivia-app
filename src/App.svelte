@@ -59,6 +59,31 @@
         }
     }
 
+	function answerQuestion(event) {
+		const questionText = event.target.parentElement.parentElement.firstChild.textContent;
+		const answerText = event.target.value;
+		const questionObject = currentQuestions.find(question => question.text === questionText);
+		if(answerText === questionObject.correctAnswer) {
+			correctCount++;
+		}
+		else {
+			incorrectCount++;
+		}
+
+		const buttons = event.target.parentElement.childNodes;
+		for(let button of buttons) {
+			if(button.value === questionObject.correctAnswer) {
+				button.classList.add('is-success');
+			}
+			else {
+				button.classList.add('is-danger');
+			}
+			button.disabled = true;
+			button.style.opacity = '1';
+		}
+		console.log(questionObject)
+	}
+
 	onMount(async () => {
 		fetchTrivia();
 	});
@@ -134,7 +159,7 @@
 						<p>{question.text}</p>
 						<div>
 							{#each question.answers as answer}
-								<button class="button trivia-answer" value={answer}>{answer}</button>
+								<button class="button trivia-answer" value={answer} on:click={answerQuestion}>{answer}</button>
 							{/each}
 						</div>
 						<span class="tag is-light">Category: {question.category}</span>
@@ -154,10 +179,10 @@
 		margin: 1rem 0;
 	}
 	.trivia-answer {
-		margin: 0 1rem;
+		margin-right: 1rem;
 	}
-	.trivia-answer:first-child, .trivia-answer:last-child {
-		margin: 0;
+	.trivia-answer:last-child {
+		margin-right: 0;
 	}
 	.tag {
 		margin-top: 1rem;
