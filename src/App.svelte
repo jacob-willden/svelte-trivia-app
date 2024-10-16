@@ -1,3 +1,43 @@
+<!--
+    @source: https://github.com/jacob-willden/svelte-trivia-app/
+
+    @licstart  The following is the entire license notice for this file.
+
+    This file is part of Svelte Trivia App.
+
+    Svelte Trivia App Copyright (C) 2023, 2024 Jacob Willden
+    (Released under the GNU General Public License (GNU GPL) Version 3.0 or later)
+
+    Some of the code below is provided by users from StackOverflow, and
+	is explicitly stated as so. Such code is released under either the
+	Creative Commons Attribution Share-Alike 3.0 or 4.0. I specify Creative
+	Commons as my proxy to make the contributions from StackOverflow
+	compatible with future versions of the GPL.
+
+    Afformentioned source code derived and modified by Jacob Willden
+    Start Date of Derivation/Modification: March 3, 2023
+    Most Recent Date of Derivation/Modification: October 15, 2024
+
+    Svelte Trivia App is free software: you can redistribute it and/or
+	modify it under the terms of the GNU General Public License (GNU
+	GPL) as published by the Free Software Foundation, either version
+	3 of the License, or (at your option) any later version. The
+	project is distributed WITHOUT ANY WARRANTY; without even the
+	implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+	PURPOSE. See the GNU GPL for more details.
+
+    As additional permission under GNU GPL version 3 section 7, you
+    may distribute non-source (e.g., minimized or compacted) forms of
+    the code without the copy of the GNU GPL normally required by
+    section 4, provided you include this license notice and a URL
+    through which recipients can access the Corresponding Source.
+
+    You should have recieved a copy of the GNU General Public License
+    along with this project. Otherwise, see: https://www.gnu.org/licenses/
+
+    @licend  The above is the entire license notice for this file.
+-->
+
 <script>
     import { onMount } from 'svelte';
 
@@ -13,19 +53,12 @@
 		return doc.documentElement.textContent;
 	}
 
-	// Shuffle items in an array, from StackOverflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+	// Shuffle items in an array, from Laurens Holst, Ben Carp, and Scott on StackOverflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 	function shuffle(array) {
-		let currentIndex = array.length, randomIndex;
-
-		// While there remain elements to shuffle
-		while (currentIndex != 0) {
-			// Pick a remaining element
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex--;
-
-			// And swap it with the current element
-			[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-		}
+		for (let i = array.length - 1; i >= 0; i--) {
+        	const j = Math.floor(Math.random() * (i + 1));
+        	[array[i], array[j]] = [array[j], array[i]];
+    	}
 		return array;
 	}
 
