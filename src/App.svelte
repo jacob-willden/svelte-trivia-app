@@ -1,5 +1,4 @@
 <script>
-	import 'bulma/css/bulma.min.css'; // From Carlos Roso: https://carlosroso.com/how-to-import-css-files-to-svelte/
     import { onMount } from 'svelte';
 
 	let correctCount = 0;
@@ -34,7 +33,7 @@
         try {
             const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`);
             const data = await response.json();
-		
+
 			currentQuestions = [];
 			for(let questionObject of data.results) {
 				const questionText = htmlDecode(questionObject.question);
@@ -43,7 +42,7 @@
 				const answersArray = shuffle([questionObject.correct_answer, ...questionObject.incorrect_answers]);
 
 				currentQuestions = [
-					...currentQuestions, 
+					...currentQuestions,
 					{
 						text: questionText,
 						type: questionType,
@@ -81,7 +80,7 @@
 			button.disabled = true;
 			button.style.opacity = '1';
 		}
-		console.log(questionObject)
+		// console.log(questionObject)
 	}
 
 	onMount(async () => {
@@ -173,16 +172,20 @@
 
 <style>
 	main {
+		max-width: 60rem;
+		margin: 0 auto;
 		padding: 1rem;
+		font-size: 1.125rem;
 	}
 	.mt-4 {
 		margin-top: 1rem;
 	}
 	.card {
-		margin: 1rem 0;
+		margin: 2rem 0;
 	}
 	.trivia-answer {
 		margin-right: 1rem;
+		margin-bottom: 1rem;
 	}
 	.trivia-answer:last-child {
 		margin-right: 0;
