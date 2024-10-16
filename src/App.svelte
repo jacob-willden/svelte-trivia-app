@@ -10,9 +10,9 @@
 
     Some of the code below is provided by users from StackOverflow, and
 	is explicitly stated as so. Such code is released under either the
-	Creative Commons Attribution Share-Alike 3.0 or 4.0. I specify Creative
-	Commons as my proxy to make the contributions from StackOverflow
-	compatible with future versions of the GPL.
+	Creative Commons Attribution Share-Alike (CC BY-SA) 3.0 or 4.0.
+	I specify Creative Commons as my proxy to make the contributions
+	from StackOverflow compatible with future versions of the GPL.
 
     Afformentioned source code derived and modified by Jacob Willden
     Start Date of Derivation/Modification: March 3, 2023
@@ -47,13 +47,13 @@
 	let category = '';
 	let difficulty = '';
 
-	// Decode string with HTML entities while avoiding cross-site scripting, from Wladimir Palant on StackOverflow: https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+	// Decode string with HTML entities while avoiding cross-site scripting, from Wladimir Palant on StackOverflow (CC BY-SA 3.0): https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
 	function htmlDecode(input) {
 		const doc = new DOMParser().parseFromString(input, 'text/html');
 		return doc.documentElement.textContent;
 	}
 
-	// Shuffle items in an array, from Laurens Holst, Ben Carp, and Scott on StackOverflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+	// Shuffle items in an array, from Laurens Holst, Ben Carp, and Scott on StackOverflow (CC BY-SA 3.0, CC BY-SA 3.0, and CC BY-SA 4.0 respectively): https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 	function shuffle(array) {
 		for (let i = array.length - 1; i >= 0; i--) {
         	const j = Math.floor(Math.random() * (i + 1));
