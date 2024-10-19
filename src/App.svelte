@@ -200,7 +200,7 @@
 			</div>
 		{/each}
 
-	<p>Created using the <a href="https://opentdb.com/api_config.php">Open Trivia Database API</a>.</p>
+	<p>This project uses the <a href="https://opentdb.com/api_config.php">Open Trivia Database Application Programming Interface (API)</a>.</p>
 </main>
 
 <style>
