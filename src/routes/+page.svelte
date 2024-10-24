@@ -113,7 +113,7 @@
 			button.disabled = true;
 			button.style.opacity = '1';
 		}
-		// console.log(questionObject)
+		// console.log(questionObject);
 	}
 
 	onMount(async () => {
@@ -182,7 +182,7 @@
 		</div>
 	</fieldset>
 
-	<button class="button mt-4" on:click={fetchTrivia}>Get 10 New Questions</button>
+	<button class="button mt-4" onclick={fetchTrivia}>Get 10 New Questions</button>
 
 		{#each currentQuestions as question}
 			<div class="card">
@@ -191,7 +191,7 @@
 						<p>{question.text}</p>
 						<div>
 							{#each question.answers as answer}
-								<button class="button trivia-answer" value={answer} on:click={answerQuestion}>{answer}</button>
+								<button class="button trivia-answer" value={answer} onclick={answerQuestion}>{answer}</button>
 							{/each}
 						</div>
 						<span class="tag is-light">Category: {question.category}</span>
