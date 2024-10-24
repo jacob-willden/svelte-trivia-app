@@ -41,11 +41,11 @@
 <script>
     import { onMount } from 'svelte';
 
-	let correctCount = 0;
-	let incorrectCount = 0;
-	let currentQuestions = [];
-	let category = '';
-	let difficulty = '';
+	let correctCount = $state(0);
+	let incorrectCount = $state(0);
+	let currentQuestions = $state([]);
+	let category = $state('');
+	let difficulty = $state('');
 
 	// Decode string with HTML entities while avoiding cross-site scripting, from Wladimir Palant on StackOverflow (CC BY-SA 3.0): https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
 	function htmlDecode(input) {
@@ -120,7 +120,7 @@
 		fetchTrivia();
 	});
 
-	//$: console.log('category:', category, 'difficulty:', difficulty);
+	// $effect(() => console.log('category:', category, 'difficulty:', difficulty));
 </script>
 
 <main>
