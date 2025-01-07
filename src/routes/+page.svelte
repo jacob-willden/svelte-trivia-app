@@ -1,5 +1,6 @@
 <!-- @source: https://github.com/jacob-willden/svelte-trivia-app/
-This file is part of Svelte Trivia App. -->
+This file is part of Svelte Trivia App, released under the GNU
+General Public License (GPL), version 3 or later. -->
 
 {@html `<script>
 /*
