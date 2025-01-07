@@ -117,14 +117,11 @@ for the JavaScript code in this page.
 			button.disabled = true;
 			button.style.opacity = '1';
 		}
-		// console.log(questionObject);
 	}
 
 	onMount(async () => {
 		fetchTrivia();
 	});
-
-	// $effect(() => console.log('category:', category, 'difficulty:', difficulty));
 </script>
 
 <main>
