@@ -1,42 +1,46 @@
-<!--
-    @source: https://github.com/jacob-willden/svelte-trivia-app/
+<!-- @source: https://github.com/jacob-willden/svelte-trivia-app/
+This file is part of Svelte Trivia App, and is released under the
+GNU General Public License version 3 or later. -->
 
-    @licstart  The following is the entire license notice for this file.
+{@html `<script>
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this page.
 
-    This file is part of Svelte Trivia App.
+Copyright (c) 2023, 2024 Jacob Willden
 
-    Svelte Trivia App Copyright (C) 2023, 2024 Jacob Willden
-    (Released under the GNU General Public License (GNU GPL) Version 3.0 or later)
+Some of the code below is provided by users from StackOverflow, and
+is explicitly stated as so. Such code is released under either the
+Creative Commons Attribution Share-Alike (CC BY-SA) 3.0 or 4.0.
+I specify Creative Commons as my proxy to make the contributions
+from StackOverflow compatible with future versions of the GPL.
 
-    Some of the code below is provided by users from StackOverflow, and
-	is explicitly stated as so. Such code is released under either the
-	Creative Commons Attribution Share-Alike (CC BY-SA) 3.0 or 4.0.
-	I specify Creative Commons as my proxy to make the contributions
-	from StackOverflow compatible with future versions of the GPL.
+Afformentioned source code derived and modified by Jacob Willden
+Start Date of Derivation/Modification: March 3, 2023
+Most Recent Date of Derivation/Modification: October 15, 2024
 
-    Afformentioned source code derived and modified by Jacob Willden
-    Start Date of Derivation/Modification: March 3, 2023
-    Most Recent Date of Derivation/Modification: October 15, 2024
+The JavaScript code in this page is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
 
-    Svelte Trivia App is free software: you can redistribute it and/or
-	modify it under the terms of the GNU General Public License (GNU
-	GPL) as published by the Free Software Foundation, either version
-	3 of the License, or (at your option) any later version. The
-	project is distributed WITHOUT ANY WARRANTY; without even the
-	implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-	PURPOSE. See the GNU GPL for more details.
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
 
-    As additional permission under GNU GPL version 3 section 7, you
-    may distribute non-source (e.g., minimized or compacted) forms of
-    the code without the copy of the GNU GPL normally required by
-    section 4, provided you include this license notice and a URL
-    through which recipients can access the Corresponding Source.
+@licend  The above is the entire license notice
+for the JavaScript code in this page.
+*/
+</script>`}
 
-    You should have recieved a copy of the GNU General Public License
-    along with this project. Otherwise, see: https://www.gnu.org/licenses/
-
-    @licend  The above is the entire license notice for this file.
--->
+<svelte:head>
+	<title>Svelte Trivia App</title>
+</svelte:head>
 
 <script>
     import { onMount } from 'svelte';
@@ -201,6 +205,7 @@
 		{/each}
 
 	<p>This project uses the <a href="https://opentdb.com/api_config.php">Open Trivia Database Application Programming Interface (API)</a>.</p>
+	<a href="/javascript" rel="jslicense">JavaScript Licenses</a>
 </main>
 
 <style>
