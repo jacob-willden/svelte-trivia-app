@@ -1,11 +1,10 @@
 <!-- @source: https://github.com/jacob-willden/svelte-trivia-app/
-This file is part of Svelte Trivia App, and is released under the
-GNU General Public License version 3 or later. -->
+This file is part of Svelte Trivia App. -->
 
 {@html `<script>
 /*
 @licstart  The following is the entire license notice for the
-JavaScript code in this page.
+code in this page.
 
 Copyright (c) 2023, 2024 Jacob Willden
 
@@ -19,7 +18,7 @@ Afformentioned source code derived and modified by Jacob Willden
 Start Date of Derivation/Modification: March 3, 2023
 Most Recent Date of Derivation/Modification: October 15, 2024
 
-The JavaScript code in this page is free software: you can
+The code in this page is free software: you can
 redistribute it and/or modify it under the terms of the GNU
 General Public License (GNU GPL) as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
