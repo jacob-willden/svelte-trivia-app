@@ -8,7 +8,7 @@ function getFilePathsFromFolder(folder) {
 	let filePaths = [];
 	const fileNames = readdirSync(`${parentPath}/${folder}`);
 	for(let file of fileNames) {
-		filePaths.push(`_app/immutable/${folder}/${file}`);
+		filePaths.push(`/_app/immutable/${folder}/${file}`);
 	}
 	return filePaths;
 }
