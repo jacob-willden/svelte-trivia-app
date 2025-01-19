@@ -10,6 +10,7 @@ function getFilePathsFromFolder(folder) {
 	for(let file of fileNames) {
 		filePaths.push(`/_app/immutable/${folder}/${file}`);
 	}
+	// console.log(filePaths)
 	return filePaths;
 }
 
@@ -23,7 +24,7 @@ export const load = () => {
 		for(let folder of folders) {
 			fileNames.push(getFilePathsFromFolder(folder));
 		}
-		console.log(fileNames)
+		// console.log('fileNames', fileNames)
 		const flattenedFileNames = fileNames.flat();
 		let files = [];
 		for(let fileName of flattenedFileNames) {
@@ -47,6 +48,7 @@ export const load = () => {
 				});
 			}
 		}
+		console.log({files})
 		return {files};
 	}
 }
