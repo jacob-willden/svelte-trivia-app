@@ -1,11 +1,11 @@
 import {dev} from '$app/environment';
 import {readdirSync} from 'fs';
 
-const parentPath = '_app/immutable';
+const parentPath = '/_app/immutable';
 
 function getFilePathsFromFolder(path) {
 	let filePaths = [];
-	const fileNames = readdirSync(`./.svelte-kit/output/client/${path}`);
+	const fileNames = readdirSync(path);
 	for(let file of fileNames) {
 		filePaths.push(`${path}/${file}`);
 	}
