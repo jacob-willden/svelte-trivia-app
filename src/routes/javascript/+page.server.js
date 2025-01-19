@@ -20,7 +20,7 @@ export const load = () => {
 		let fileNames = [];
 		const folders = ['chunks', 'entry', 'nodes'];
 		for(let folder of folders) {
-			fileNames.push(getFilePathsFromFolder(`${parentPath}/${folder}`));
+			fileNames.push(getFilePathsFromFolder(`${parentPath}/${folder}/`));
 		}
 		const flattenedFileNames = fileNames.flat();
 		let files = [];
