@@ -1,20 +1,21 @@
 import {dev} from '$app/environment';
-import {readdirSync} from 'fs';
+// import {readdirSync} from 'fs';
+import { opendir } from 'node:fs/promises';
 // import * as path from 'path';
 
 // const parentPath = path.join("./.svelte-kit/output/client/_app/immutable");
 
-function getFilePathsFromFolder(folder) {
+async function getFilePathsFromFolder(folder) {
 	let filePaths = [];
-	const fileNames = readdirSync(`/_app/immutable/${folder}`);
-	for(let file of fileNames) {
-		filePaths.push(`/_app/immutable/${folder}/${file}`);
+	const filesPath = await opendir(`./.svelte-kit/output/client/_app/immutable/${folder}`);
+	for await (const file of filesPath) {
+		filePaths.push(`/_app/immutable/${folder}/${file.name}`);
 	}
 	// console.log(filePaths)
 	return filePaths;
 }
 
-export const load = () => {
+export const load = async () => {
 	if(dev) {
 		return {files: []}; // Need to figure out the directories for development
 	}
@@ -22,7 +23,7 @@ export const load = () => {
 		let fileNames = [];
 		const folders = ['chunks', 'entry', 'nodes'];
 		for(let folder of folders) {
-			fileNames.push(getFilePathsFromFolder(folder));
+			fileNames.push(await getFilePathsFromFolder(folder));
 		}
 		// console.log('fileNames', fileNames)
 		const flattenedFileNames = fileNames.flat();
