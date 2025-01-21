@@ -7,7 +7,7 @@ import { opendir } from 'node:fs/promises';
 
 async function getFilePathsFromFolder(folder) {
 	let filePaths = [];
-	const filesPath = await opendir(`./.svelte-kit/output/client/_app/immutable/${folder}`);
+	const filesPath = await opendir(`/_app/immutable/${folder}`);
 	for await (const file of filesPath) {
 		filePaths.push(`/_app/immutable/${folder}/${file.name}`);
 	}
