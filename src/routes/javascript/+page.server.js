@@ -2,7 +2,7 @@ import {dev} from '$app/environment';
 import {readdirSync} from 'fs';
 import * as path from 'path';
 
-const parentPath = path.resolve(process.cwd(), './.svelte-kit/output/client/_app/immutable');
+const parentPath = path.join("./.svelte-kit/output/client/_app/immutable");
 
 function getFilePathsFromFolder(folder) {
 	let filePaths = [];
