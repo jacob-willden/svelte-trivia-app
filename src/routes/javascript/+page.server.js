@@ -49,7 +49,7 @@ export const load = async () => {
 				});
 			}
 		}
-		console.log({files})
+		// console.log({files})
 		return {files};
 	}
 }
