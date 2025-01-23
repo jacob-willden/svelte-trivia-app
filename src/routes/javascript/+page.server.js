@@ -7,7 +7,7 @@ import { opendir } from 'node:fs/promises';
 
 async function getFilePathsFromFolder(folder) {
 	let filePaths = [];
-	const filesPath = await opendir(`/_app/immutable/${folder}`);
+	const filesPath = await opendir(`./.svelte-kit/output/client/_app/immutable/${folder}`);
 	for await (const file of filesPath) {
 		filePaths.push(`/_app/immutable/${folder}/${file.name}`);
 	}
@@ -42,7 +42,7 @@ export const load = async () => {
 			else {
 				files.push({
 					name: fileName,
-					licenseURL: 'https://www.gnu.org/licenses/gpl-3.0.html',
+					licenseURL: 'http://www.gnu.org/licenses/gpl-3.0.html',
 					licenseName: 'GNU-GPL-3.0-or-later',
 					sourceURL: 'https://github.com/jacob-willden/svelte-trivia-app/blob/main/src/routes/%2Bpage.svelte',
 					sourceName: 'src/routes/+page.svelte'
